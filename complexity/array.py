@@ -12,6 +12,10 @@ for i in range(n):
     fre[a[i]] += 1
 
     while unique == k:
+        # this steps is to eliminate duplicated values
+        # 1 1 2 2 3 3 4 5
+        # when reaching a[4] = 3, there are 3 unique digits, but 5 numbers in that range from the array_start
+        # to eliminate the exceeding 1s
         fre[a[j]] -= 1
 
         if fre[a[j]] == 0:
