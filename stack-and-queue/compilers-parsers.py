@@ -1,25 +1,31 @@
 n = int(input())
-instructions = []
-def count_pair(instruction):
-    final_length = 0
-    current_length = final_length
-    queue = []
-    for i in range(len(instruction)):
-        if instruction[i] == "<":
-            queue.append(instruction[i])
+inputs = []
+for i in range(n):
+    inputs.append(input())
+
+
+def check(str):
+    count = 0
+    stack = []
+    count_closing = 0
+    for i in str:
+        if i == '<':
+            stack.append(i)
         else:
-            if len(queue) == 0:
-                break
+            if len(stack) != 0:
+                count_closing += 1
+                stack.pop()
+                count += 1
             else:
-                queue.pop()
-                current_length+=2
-        
+                break
 
-    return current_length
-        
+    if len(stack) != 0 or count != count_closing:
+        print(0)
+    else:
+        print(count*2)
 
-for i in range (n):
-    instructions.append(str(input()))
+for i in range(n):
+    check(inputs[i])
 
-for i in range (len(instructions)):
-    print(count_pair(instructions[i]))
+# <<<><> - 0
+# <<><<>><< - 0
